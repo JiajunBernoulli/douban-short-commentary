@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <title></title>
+                     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+                </head>
+                <body>
+                    <div id="main" style="width:80%;height: 500px;border: 1px solid black"></div>
+                </body>
+                <script type="text/javascript">
+                require.config({
+                    paths: {
+                        echarts: 'http://echarts.baidu.com/build/dist'
+                    }
+                });
+                
+                // 使用
+                require(
+                    [
+                        'echarts',
+                        'echarts/chart/wordCloud',
+                    ],
+                    function (ec) {
+                        // 基于准备好的dom，初始化echarts图表
+                        var myChart = ec.init(document.getElementById('main')); 
+                        function createRandomItemStyle() {
+                                    return {
+                                        normal: {
+                                            color: 'rgb(' + [
+                                                Math.round(Math.random() * 160),
+                                                Math.round(Math.random() * 160),
+                                                Math.round(Math.random() * 160)
+                                            ].join(',') + ')'
+                                        }
+                                    };
+                                }
+            option = {
+            title: {
+                text: '地球最后的夜晚',
+                link: 'http://www.google.com/trends/hottrends'
+            },
+            tooltip: {
+                show: true
+            },
+            series: [{
+                name: 'Google Trends',
+                type: 'wordCloud',
+                size: ['80%', '80%'],
+                textRotation : [0, 45, 90, -45],
+                textPadding: 0,
+                autoSize: {
+                    enable: true,
+                    minSize: 14
+                },
+                data: [
+                    {itemStyle: createRandomItemStyle(), name: "的", value: 715},
+{itemStyle: createRandomItemStyle(), name: "了", value: 385},
+{itemStyle: createRandomItemStyle(), name: "电影", value: 143},
+{itemStyle: createRandomItemStyle(), name: "是", value: 143},
+{itemStyle: createRandomItemStyle(), name: "就", value: 121},
+{itemStyle: createRandomItemStyle(), name: "在", value: 110},
+{itemStyle: createRandomItemStyle(), name: "看", value: 99},
+{itemStyle: createRandomItemStyle(), name: "被", value: 77},
+{itemStyle: createRandomItemStyle(), name: "我", value: 77},
+{itemStyle: createRandomItemStyle(), name: "都", value: 77},
+        
+                ]
+            }]
+        };
+        // 为echarts对象加载数据 
+                        myChart.setOption(option); 
+                    }
+                );
+                </script>
+                </html>
