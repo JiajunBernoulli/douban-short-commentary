@@ -18,5 +18,5 @@ MONGO_TABLE_COMMENTS = 'comments'
 MONGO_TABLE_WORDS = 'words'
 
 ## 指定生成echarts文件的相关参数
-WORD_CLOUD_NAME = '地球最后的夜晚.html'
+WORD_CLOUD_NAME = 'results/地球最后的夜晚.html'
 WORD_CLOUD_TITLE = '地球最后的夜晚'
