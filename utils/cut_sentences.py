@@ -1,3 +1,5 @@
+import re
+
 import jieba as jieba
 
 from config import IGNORE
@@ -11,17 +13,14 @@ def get_words(sentences):
     if not IGNORE is None:
         ignore = IGNORE
     else:
-        ignore = [",", "，", ".", "。", " ", "#", "！"]
+        ignore = []
     for sentence in sentences:
         list = jieba.cut(sentence, cut_all=False)
         for word in list:
             if word in words:
                 words[str(word)] = int(words.get(str(word)))+1
             else:
-                if not word.isalpha():
-                    ignore.append(word)
-                    continue
-                if word not in ignore:
+                if is_chinese_word(word) and word not in ignore:
                     words[str(word)] = 1
     # print(words)
     return words
@@ -40,3 +39,11 @@ def get_ord_words(sentences, count):
     if count is None:
         return ord_list, names, values
     return ord_list[0:count], names[0:count], values[0:count]
+#-*- coding:utf-8 -*-
+def is_chinese_word(word):
+    if len(word) == 1:
+        return False
+    for char in word:
+        if char < u"\u4e00" or char > u"\u9fa6":
+            return False
+    return True
